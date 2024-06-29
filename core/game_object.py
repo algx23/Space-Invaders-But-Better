@@ -11,14 +11,18 @@ class GameObject:
     initialisation to load the image, and if needed, resize it, and with a draw
     function that blits the image to the required position in the screen"""
 
-    def __init__(self, image_path, x, y, w=None, h=None):
+    def __init__(self, image_path, screen, x, y, w=None, h=None):
         image_path = image_path
-        self.image = pygame.image.load(os.path.join("assets\\images", f"{image_path}"))
-        if w and h:
-            self.image = pygame.transform.scale(self.image, (w, h))
+        self.image = pygame.image.load(
+            os.path.join("assets\\images", f"{image_path}")
+        ).convert_alpha()
         self.x = x
         self.y = y
+        self.screen = screen
 
-    def draw(self, screen):
-        screen.blit(self.image, (self.x, self.y))
+        if w and h:
+            self.image = pygame.transform.scale(self.image, (w, h))
+
+    def draw(self):
+        self.screen.blit(self.image, (self.x, self.y))
         return

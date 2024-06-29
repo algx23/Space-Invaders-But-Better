@@ -4,20 +4,27 @@ from core.game_object import GameObject
 
 class Projectile(GameObject):
 
-    def __init__(self, rocket, screen):
-        super().__init__("projectile.png", rocket.x, rocket.y, 30, 30)
+    def __init__(self, x, y, screen):
+        super().__init__("bullet.png", x, y, 25, 1)
 
-        self.state = 0
-        self.velocity = 3
-        self.rocket = rocket
+        # debugging stuffs
+        if not hasattr(self, "image"):
+            print("initialization failed")
+        else:
+            print("Initialization success")
+
+        self.velocity = 1
         self.screen = screen
-        self.x = rocket.x
-        self.y = rocket.y
+        self.x = x
+        self.y = y
 
-    def travel(self, screen):
-        while self.y - self.velocity >= 0:
+    def travel(self, enemy_x, enemy_y):
+        print(f"before: {self.x}, {self.y}")
+        print("traveling to enemy at pos: ", enemy_x, enemy_y)
+        while self.y > 0:
             self.y -= self.velocity
-            print(self.y)
-            screen.blit(self.image, (self.x, self.y))
-        print("finished")
-        return
+
+            self.screen.blit(self.image, (self.x, self.y))
+            if self.x == enemy_x + 20 or self.y == enemy_y + 20:
+                print("collision detected")
+        pygame.display.flip()
