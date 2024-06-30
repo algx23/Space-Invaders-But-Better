@@ -7,6 +7,8 @@ class Enemy(GameObject):
         super().__init__(image_path, screen, x, y, w, h)
         self.x_pos = x
         self.y_pos = y
+        self.w = w
+        self.h = h
         self.x_velocity = randint(1, 5)
         self.y_velocity = randint(1, 5)
 

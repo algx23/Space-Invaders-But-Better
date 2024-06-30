@@ -26,7 +26,7 @@ class Rocket(GameObject):
         if key[pygame.K_RIGHT] and (self.x + (0.5 * self.speed)) < (600 - self.w):
             self.x += self.speed
 
-    def shoot(self, enemy_x: int, enemy_y: int) -> None:
+    def shoot(self, enemy_r) -> None:
         # self.x = self.x + self.w // 2
         projectile = Projectile(self.x, self.y, self.screen)
-        projectile.travel(enemy_x, enemy_y)
+        projectile.travel(enemy_r)

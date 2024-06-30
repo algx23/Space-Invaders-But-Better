@@ -18,13 +18,14 @@ class Projectile(GameObject):
         self.x = x
         self.y = y
 
-    def travel(self, enemy_x, enemy_y):
+    # passing in the enemy rect, to check for collision between the projectile and the thing
+    def travel(self, enemy_r):
         print(f"before: {self.x}, {self.y}")
-        print("traveling to enemy at pos: ", enemy_x, enemy_y)
         while self.y > 0:
+            pygame.Rect(self.x, self.y, 25, 1)
             self.y -= self.velocity
-
             self.screen.blit(self.image, (self.x, self.y))
-            if self.x == enemy_x + 20 or self.y == enemy_y + 20:
+            projectile_pos = (self.x, self.y)
+            if pygame.Rect.collidepoint(enemy_r, projectile_pos):
                 print("collision detected")
         pygame.display.flip()
