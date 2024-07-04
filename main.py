@@ -28,20 +28,19 @@ running = True
 while running:
     KEY = pygame.key.get_pressed()
     CLOCK.tick(FPS)
-    rocket_r = pygame.Rect(ROCKET.x, ROCKET.y, ROCKET.w, ROCKET.h)
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
 
     screen.fill((0, 0, 0))
     ROCKET.move()
+    ROCKET.update_position()
     ROCKET.draw()
 
     enemy_manager.drawEnemies()
+    enemy_rs = enemy_manager.getEnemyRects()
 
     if KEY[pygame.K_o]:
-        enemy_rs = enemy_manager.getEnemyRects()
-        print(enemy_rs)
         ROCKET.shoot(enemy_rs)
 
     pygame.display.flip()

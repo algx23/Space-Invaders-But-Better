@@ -4,14 +4,16 @@ from core.game_object import GameObject
 
 class Projectile(GameObject):
 
-    def __init__(self, x, y, screen):
-        super().__init__("bullet.png", x, y, 1, 25)
+    def __init__(self, x, y, screen) -> None:
+        """initialises the projectile class
 
-        # debugging stuffs
-        if not hasattr(self, "image"):
-            print("initialization failed")
-        else:
-            print("Initialization success")
+        Args:
+            x (int): starting X co-ordinate of the projectile
+            y (int): starting Y co-ordinate of the projectile
+            screen (Surface): screen the projectiles will be drawn on to -
+              in this case just the main window
+        """
+        super().__init__("bullet.png", x, y, 1, 25)
 
         self.velocity = 1
         self.screen = screen
@@ -22,20 +24,26 @@ class Projectile(GameObject):
 
     # passing in the enemy rect, to check for collision between the projectile and the thing
     def travel(self, enemy_rs) -> None:
+        """function to model the travelling of the projectiles shot from the rocket
+
+        Args:
+            enemy_rs (List[rect]): list of rectangles corresponding to each enemy
+        """
         while self.y > 0:
             projectile_r = pygame.Rect(self.x, self.y, self.w, self.h)
 
             self.y -= self.velocity
             self.screen.blit(self.image, (self.x, self.y))
 
-            if self.checkHit(enemy_rs, projectile_r):
+            if self.checkHit(enemy_rs):
                 print("collision")
                 break
             else:
                 print("no collision")
-        pygame.display.flip()
 
-    def checkHit(self, enemy_rs, projectile_r) -> bool:
+            pygame.display.flip()
+
+    def checkHit(self, enemy_rs) -> bool:
         """checks if the projectile hit the enemy
 
         Args:
@@ -45,6 +53,8 @@ class Projectile(GameObject):
         Returns:
             bool: returns True if the projectile hit, otherwise false
         """
+
+        projectile_r = pygame.Rect(self.x, self.y, self.w, self.h)
         for enemy in enemy_rs:
             if enemy.colliderect(projectile_r):
                 return True

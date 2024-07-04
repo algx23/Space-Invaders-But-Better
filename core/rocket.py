@@ -3,7 +3,7 @@ from core.game_object import GameObject
 from core.projectile import Projectile
 
 
-class Rocket(GameObject):
+class Rocket(GameObject, pygame.sprite.Sprite):
     def __init__(self, image_path, x, y, w, h, screen):
         super().__init__(image_path, screen, x, y, w, h)
         self.x = x
@@ -26,7 +26,13 @@ class Rocket(GameObject):
         if key[pygame.K_RIGHT] and (self.x + (0.5 * self.speed)) < (600 - self.w):
             self.x += self.speed
 
-    def shoot(self, enemy_r) -> None:
+    def shoot(self, enemy_rs) -> None:
         # self.x = self.x + self.w // 2
         projectile = Projectile(self.x, self.y, self.screen)
-        projectile.travel(enemy_r)
+        self.projectiles.append(projectile)
+
+        for projectile in self.projectiles:
+            projectile.travel(enemy_rs)
+
+            if projectile.y < 0 or projectile.checkHit(enemy_rs):
+                self.projectiles.remove(projectile)

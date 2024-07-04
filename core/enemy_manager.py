@@ -23,11 +23,11 @@ class EnemyManager:
     def drawEnemies(self):
         """draws enemies from enemy list onto the screen"""
         for enemy in self.enemies:
+            enemy.random_move()
             enemy.draw()
 
     def getEnemyRects(self):
         """gets the rect and dimensions of each enemy
-
         Returns:
             List[Rect]: returns a list of each enemy's Rect
         """
