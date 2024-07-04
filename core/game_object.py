@@ -19,10 +19,14 @@ class GameObject:
         self.x = x
         self.y = y
         self.screen = screen
+        self.rect = self.image.get_rect(topleft=(self.x, self.y))
 
         if w and h:
             self.image = pygame.transform.scale(self.image, (w, h))
 
     def draw(self):
-        self.screen.blit(self.image, (self.x, self.y))
+        self.screen.blit(self.image, self.rect.topleft)
         return
+
+    def update_position(self):
+        self.rect.topleft = (self.x, self.y)
