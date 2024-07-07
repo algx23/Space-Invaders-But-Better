@@ -25,14 +25,15 @@ class EnemyManager:
         for enemy in self.enemies:
             enemy.random_move()
             enemy.draw()
+            pygame.display.flip()
 
     def getEnemyRects(self):
         """gets the rect and dimensions of each enemy
         Returns:
             List[Rect]: returns a list of each enemy's Rect
         """
-        enemy_rs = []
+        self.enemy_rs = []
         for enemy in self.enemies:
-            enemy_rs.append(pygame.Rect(enemy.x, enemy.y, enemy.w, enemy.h))
+            self.enemy_rs.append(pygame.Rect(enemy.x, enemy.y, enemy.w, enemy.h))
 
-        return enemy_rs
+        return self.enemy_rs

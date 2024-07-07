@@ -26,13 +26,16 @@ class Rocket(GameObject, pygame.sprite.Sprite):
         if key[pygame.K_RIGHT] and (self.x + (0.5 * self.speed)) < (600 - self.w):
             self.x += self.speed
 
+        self.update_position(self.x, self.y)
+
     def shoot(self, enemy_rs) -> None:
         # self.x = self.x + self.w // 2
         projectile = Projectile(self.x, self.y, self.screen)
+        projectile_r = pygame.Rect(self.x, self.y, 20, 25)
         self.projectiles.append(projectile)
 
         for projectile in self.projectiles:
             projectile.travel(enemy_rs)
 
-            if projectile.y < 0 or projectile.checkHit(enemy_rs):
+            if projectile.y < 0:
                 self.projectiles.remove(projectile)

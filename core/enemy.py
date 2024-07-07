@@ -33,19 +33,21 @@ class Enemy(GameObject):
             case "right":
                 self.x_pos += self.velocity[0]
 
-        self.rect.topleft = (self.x_pos, self.y_pos)
+        self.update_position(self.x_pos, self.y_pos)
 
-        if randint(0, 100) < 5:
-            self.direction = choice(["up", "down", "left", "right"])
+        # if randint(0, 100) < 5:
+        #     self.direction = choice(["up", "down", "left", "right"])
 
         if self.x_pos < 0 or self.x_pos > self.screen.get_width() - self.w:
             self.velocity[0] *= -1
         if self.y_pos < 0 or self.y_pos > self.screen.get_height() - self.h:
             self.velocity[1] *= -1
 
-        pygame.display.update()
+        pygame.display.flip()
 
         return
 
     def draw(self):
         self.screen.blit(self.image, self.rect.topleft)
+        pygame.display.flip()
+        return
