@@ -5,4 +5,6 @@ __pycache__/
 #neovim undo dir
 ~/
 core/__pycache__/
+
+# the vscode folder
 .vscode/
