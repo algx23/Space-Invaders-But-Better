@@ -12,10 +12,14 @@ This will be coming soon :D
 
 ## Usage
 
----
-
-COMING-SOON
-
-## Tutorial
+coming soon
 
 See Video At: COMING-SOON
+
+---
+
+## Known Bugs
+
+- flickering of enemies
+- enemies may sometimes not show
+- collision detection sometimes rendering collisions that did not happen
