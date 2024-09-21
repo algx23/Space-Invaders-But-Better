@@ -22,19 +22,25 @@ class Projectile(GameObject):
         self.w = 20
         self.h = 25
 
+    def draw(self):
+        # print("drawing..")
+        self.update_position(self.x, self.y)
+
+        self.screen.blit(self.image, (self.x, self.y))
+        return
+
     # passing in the enemy rect, to check for collision between the projectile and the thing
 
     def travel(self, enemy_rs) -> None:
+
+        projectile_r = pygame.Rect(self.x, self.y, self.w, self.h)
         while self.y > 0:
-            projectile_r = pygame.Rect(self.x, self.y, self.w, self.h)
             self.y -= self.velocity
 
-            self.screen.blit(self.image, (self.x, self.y))
+            self.draw()
             pygame.display.update()
 
-            for rect in enemy_rs:
-                if pygame.Rect.colliderect(projectile_r, rect):
-                    print("collision")  # Collision detected, return True
-                    return
-
-        return False  # No collision, return False
+        for rect in enemy_rs:
+            if pygame.Rect.colliderect(projectile_r, rect):
+                print(1)
+            return
