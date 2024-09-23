@@ -4,6 +4,7 @@ from core.enemy import Enemy
 
 
 class EnemyManager:
+    """enemy manager class to handle creating, drawing, and well..managing enemies and their respective rects,"""
 
     def __init__(self, screen, enemy_img_path, w, h):
         self.screen = screen
