@@ -33,14 +33,14 @@ class Projectile(GameObject):
 
     def travel(self, enemy_rs) -> None:
 
-        projectile_r = pygame.Rect(self.x, self.y, self.w, self.h)
         while self.y > 0:
             self.y -= self.velocity
+            projectile_r = pygame.Rect(self.x, self.y, self.w, self.h)
+
+            for rect in enemy_rs:
+                if pygame.Rect.colliderect(projectile_r, rect):
+                    print(1)
 
             self.draw()
             pygame.display.update()
-
-        for rect in enemy_rs:
-            if pygame.Rect.colliderect(projectile_r, rect):
-                print(1)
-            return
+        return
