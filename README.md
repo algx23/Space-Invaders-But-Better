@@ -21,5 +21,6 @@ See Video At: COMING-SOON
 ## Known Bugs
 
 - flickering of enemies
+- sometimes projectiles do not show when firing
 - enemies may sometimes not show
 - collision detection sometimes rendering collisions that did not happen
