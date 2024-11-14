@@ -3,14 +3,14 @@ from core.game_object import GameObject
 from random import randint, choice
 
 
-class Enemy(GameObject):
+class Enemy(GameObject, pygame.sprite.Sprite):
     def __init__(self, image_path, x, y, w, h, screen):
         super().__init__(image_path, screen, x, y, w, h)
         self.x_pos = x
         self.y_pos = y
         self.w = w
         self.h = h
-        self.rect = self.image.get_rect(topleft=(self.x_pos, self.y_pos))
+        self.rect = self.image.get_frect(topleft=(self.x_pos, self.y_pos))
 
         # index 0: x velocity , index 1: y velocity
         self.velocity = [randint(1, 5), randint(1, 5)]
@@ -50,4 +50,5 @@ class Enemy(GameObject):
     def draw(self):
         self.screen.blit(self.image, self.rect.topleft)
         pygame.display.flip()
+
         return
