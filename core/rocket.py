@@ -4,14 +4,14 @@ from core.projectile import Projectile
 
 
 class Rocket(GameObject, pygame.sprite.Sprite):
-    def __init__(self, image_path, x, y, w, h, screen):
+    def __init__(self, image_path, x, y, w, h, screen) -> None:
         super().__init__(image_path, screen, x, y, w, h)
         self.x = x
         self.y = y
         self.w = w
         self.h = h
         self.speed = 1
-        self.projectiles = []
+        self.projectiles: List[int] = []
         self.screen = screen
 
     def move(self) -> None:
@@ -29,9 +29,12 @@ class Rocket(GameObject, pygame.sprite.Sprite):
         self.update_position(self.x, self.y)
 
     def shoot(self, enemy_rs) -> None:
-        # self.x = self.x + self.w // 2
+        """shoots a projectile when the FIRE key is pressed
+
+        Args:
+            enemy_rs (List[rect]): a list of all enemy positions based on the co ordinates of their respective rects
+        """
         projectile = Projectile(self.x, self.y, self.screen)
-        projectile_r = pygame.Rect(self.x, self.y, 20, 25)
         self.projectiles.append(projectile)
 
         for projectile in self.projectiles:
@@ -39,3 +42,4 @@ class Rocket(GameObject, pygame.sprite.Sprite):
 
             if projectile.y < 0:
                 self.projectiles.remove(projectile)
+    
