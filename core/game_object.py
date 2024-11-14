@@ -1,11 +1,9 @@
 import os
 import pygame
 
-# from core.rocket import Rocket
-
 
 class GameObject:
-    """all ,,entities" in this game will be considered gameObject
+    """all entities in this game will be considered gameObject
     initialisation to load the image, and if needed, resize it, and with a draw
     function that blits the image to the required position in the screen
     initialisation to load the image, and if needed, resize it, and with a draw
