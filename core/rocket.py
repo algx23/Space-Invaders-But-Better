@@ -11,7 +11,7 @@ class Rocket(GameObject, pygame.sprite.Sprite):
         self.w = w
         self.h = h
         self.speed = 1
-        self.projectiles: List[int] = []
+        self.projectiles: list[int] = []
         self.screen = screen
 
     def move(self) -> None:
@@ -28,7 +28,7 @@ class Rocket(GameObject, pygame.sprite.Sprite):
 
         self.update_position(self.x, self.y)
 
-    def shoot(self, enemy_rs) -> None:
+    def shoot(self, enemy_rs) -> bool:
         """shoots a projectile when the FIRE key is pressed
 
         Args:
@@ -38,8 +38,6 @@ class Rocket(GameObject, pygame.sprite.Sprite):
         self.projectiles.append(projectile)
 
         for projectile in self.projectiles:
-            projectile.travel(enemy_rs)
-
             if projectile.y < 0:
                 self.projectiles.remove(projectile)
-    
+            return projectile.travel(enemy_rs)
