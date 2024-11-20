@@ -39,7 +39,7 @@ class Projectile(GameObject):
             for rect in enemy_rs:
                 if pygame.Rect.colliderect(projectile_r, rect):
                     print(1)
-                    return
+                    return True
 
             self.draw()
             pygame.display.update()
