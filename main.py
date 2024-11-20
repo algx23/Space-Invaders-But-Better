@@ -4,6 +4,14 @@ from core.rocket import Rocket
 from core.enemy_manager import EnemyManager
 
 
+def showScore(screen, score):
+    score_font = pygame.font.Font()
+    score_text = score_font.render(str(score), True, (255, 255, 255), (255, 0, 0))
+    score_Rect = pygame.rect.Rect(20, 20, 20, 20)
+    screen.blit(score_text, score_Rect)
+    return
+
+
 def main() -> None:
     """
     this is the main function that handles the main game loop
@@ -29,12 +37,13 @@ def main() -> None:
 
     while running:
         CLOCK.tick(FPS)
+
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 running = False
             elif event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
-                    enemy_rs = enemy_manager.getEnemyRects()
+                    # enemy_rs = enemy_manager.getEnemyRects()
                     if ROCKET.shoot(enemy_rs):
                         score += 1
                         print(score)
@@ -44,11 +53,12 @@ def main() -> None:
                 ROCKET.projectiles.remove(projectile)
 
         screen.fill(bg_color)
+        showScore(screen, score)
         ROCKET.move()
         ROCKET.draw()
 
         enemy_manager.drawEnemies()
-        enemy_manager.getEnemyRects()
+        enemy_rs = enemy_manager.getEnemyRects()
 
         for projectile in ROCKET.projectiles:
             projectile.draw()
