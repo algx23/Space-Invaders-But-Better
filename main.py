@@ -7,8 +7,8 @@ from core.enemy_manager import EnemyManager
 def showScore(screen, score):
     score_font = pygame.font.Font()
     score_text = score_font.render(str(score), True, (255, 255, 255), (255, 0, 0))
-    score_Rect = pygame.rect.Rect(20, 20, 20, 20)
-    screen.blit(score_text, score_Rect)
+    score_rect = pygame.rect.Rect(50, 50, 100, 100)
+    screen.blit(score_text, score_rect)
     return
 
 
