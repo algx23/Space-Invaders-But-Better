@@ -4,7 +4,13 @@ from core.rocket import Rocket
 from core.enemy_manager import EnemyManager
 
 
-def showScore(screen, score):
+def showScore(screen, score) -> None:
+    """Function to create and render the score of the player on the screen
+
+    Args:
+        screen (Pygame.Surface): the screen the score is shown onto
+        score (int): current score
+    """
     score_font = pygame.font.Font()
     score_text = score_font.render(str(score), True, (255, 255, 255), (255, 0, 0))
     score_rect = pygame.rect.Rect(50, 50, 100, 100)
@@ -34,7 +40,6 @@ def main() -> None:
         enemy_manager.createEnemies()
 
     running = True
-
     while running:
         CLOCK.tick(FPS)
 
