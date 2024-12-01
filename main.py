@@ -28,10 +28,10 @@ def main() -> None:
     CLOCK = pygame.time.Clock()
     WIDTH, HEIGHT = 600, 400
     FPS = 60
+    BG_COLOR = (0, 0, 0)
     score: int = 0
 
     screen = pygame.display.set_mode((WIDTH, HEIGHT))
-    bg_color = (0, 0, 0)
 
     ROCKET = Rocket("rocket.png", WIDTH / 2, HEIGHT / 2, 50, 50, screen)
     enemy_manager = EnemyManager(screen, "enemy.png", 20, 20)
@@ -57,7 +57,7 @@ def main() -> None:
             if not projectile.travel(enemy_rs):
                 ROCKET.projectiles.remove(projectile)
 
-        screen.fill(bg_color)
+        screen.fill(BG_COLOR)
         showScore(screen, score)
         ROCKET.move()
         ROCKET.draw()
