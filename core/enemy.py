@@ -19,7 +19,7 @@ class Enemy(GameObject, pygame.sprite.Sprite):
 
     # TODO implement attack
     def attack():
-        return
+        pass
 
     # TODO implement enemy movemenet
     def random_move(self):
