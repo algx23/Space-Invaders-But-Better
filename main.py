@@ -36,8 +36,10 @@ def main() -> None:
     ROCKET = Rocket("rocket.png", WIDTH / 2, HEIGHT / 2, 50, 50, screen)
     enemy_manager = EnemyManager(screen, "enemy.png", 20, 20)
 
+    num = 0
     for num in range(4):
         enemy_manager.createEnemies()
+        num += 1
 
     running = True
     while running:
