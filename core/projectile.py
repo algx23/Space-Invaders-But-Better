@@ -37,6 +37,7 @@ class Projectile(GameObject):
             projectile_r = pygame.Rect(self.x, self.y, self.w, self.h)
 
             for rect in enemy_rs:
+
                 if pygame.Rect.colliderect(projectile_r, rect):
                     print(1)
                     return True
