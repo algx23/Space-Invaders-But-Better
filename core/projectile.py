@@ -23,14 +23,20 @@ class Projectile(GameObject):
         self.h: int = 25
 
     def draw(self):
-        # print("drawing..") --> this was for debugging purposes
+        """function for drawing the projectiles"""
+        # print("drawing..")  this was for debugging purposes
         self.update_position(self.x, self.y)
 
         self.screen.blit(self.image, (self.x, self.y))
-        return
 
     # passing in the enemy rect, to check for collision between the projectile and the thing
     def travel(self, enemy_rs) -> None:
+        """function to draw the projectile to the screen, update its rect, and
+            check for collisions with enemies
+
+        Args:
+            enemy_rs (list[pygame.Rect]): list of the enemy rects including their position and size
+        """
 
         while self.y > 0:
             self.y -= self.velocity
@@ -44,4 +50,3 @@ class Projectile(GameObject):
 
             self.draw()
             pygame.display.update()
-        return
