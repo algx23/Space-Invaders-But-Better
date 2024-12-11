@@ -21,7 +21,6 @@ class Enemy(GameObject, pygame.sprite.Sprite):
     def attack():
         pass
 
-    # TODO implement enemy movemenet
     def random_move(self):
         match self.choice:
             case "up":
@@ -35,9 +34,7 @@ class Enemy(GameObject, pygame.sprite.Sprite):
 
         self.update_position(self.x_pos, self.y_pos)
 
-        # if randint(0, 100) < 5:
-        #     self.direction = choice(["up", "down", "left", "right"])
-
+        # reversing velocity if enemy position will go off screen
         if self.x_pos < 0 or self.x_pos > self.screen.get_width() - self.w:
             self.velocity[0] *= -1
         if self.y_pos < 0 or self.y_pos > self.screen.get_height() - self.h:
